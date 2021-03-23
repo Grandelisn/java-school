@@ -58,7 +58,8 @@ public class MavenWrapperDownloader
 
         // If the maven-wrapper.properties exists, read it and check if it contains a custom
         // wrapperUrl parameter.
-        File mavenWrapperPropertyFile = new File(baseDirectory, MAVEN_WRAPPER_PROPERTIES_PATH);
+        File mavenWrapperPropertyFile = new File(baseDirectory,
+            MAVEN_WRAPPER_PROPERTIES_PATH);
         String url = DEFAULT_DOWNLOAD_URL;
         if (mavenWrapperPropertyFile.exists())
         {
@@ -68,13 +69,12 @@ public class MavenWrapperDownloader
                 mavenWrapperPropertyFileInputStream = new FileInputStream(mavenWrapperPropertyFile);
                 Properties mavenWrapperProperties = new Properties();
                 mavenWrapperProperties.load(mavenWrapperPropertyFileInputStream);
-                url = mavenWrapperProperties.getProperty(PROPERTY_NAME_WRAPPER_URL, url);
-            }
-            catch (IOException e)
+                url = mavenWrapperProperties.getProperty(PROPERTY_NAME_WRAPPER_URL,
+                    url);
+            } catch (IOException e)
             {
                 System.out.println("- ERROR loading '" + MAVEN_WRAPPER_PROPERTIES_PATH + "'");
-            }
-            finally
+            } finally
             {
                 try
                 {
@@ -82,8 +82,7 @@ public class MavenWrapperDownloader
                     {
                         mavenWrapperPropertyFileInputStream.close();
                     }
-                }
-                catch (IOException e)
+                } catch (IOException e)
                 {
                     // Ignore ...
                 }
@@ -91,22 +90,26 @@ public class MavenWrapperDownloader
         }
         System.out.println("- Downloading from: : " + url);
 
-        File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
-        if (!outputFile.getParentFile().exists())
+        File outputFile = new File(baseDirectory.getAbsolutePath(),
+            MAVEN_WRAPPER_JAR_PATH);
+        if (!outputFile.getParentFile()
+            .exists())
         {
-            if (!outputFile.getParentFile().mkdirs())
+            if (!outputFile.getParentFile()
+                .mkdirs())
             {
-                System.out.println("- ERROR creating output direcrory '" + outputFile.getParentFile().getAbsolutePath() + "'");
+                System.out.println("- ERROR creating output direcrory '" + outputFile.getParentFile()
+                    .getAbsolutePath() + "'");
             }
         }
         System.out.println("- Downloading to: " + outputFile.getAbsolutePath());
         try
         {
-            downloadFileFromURL(url, outputFile);
+            downloadFileFromURL(url,
+                outputFile);
             System.out.println("Done");
             System.exit(0);
-        }
-        catch (Throwable e)
+        } catch (Throwable e)
         {
             System.out.println("- Error downloading");
             e.printStackTrace();
@@ -114,13 +117,18 @@ public class MavenWrapperDownloader
         }
     }
 
-    private static void downloadFileFromURL(String urlString, File destination) throws Exception
+    private static void downloadFileFromURL(
+        String urlString,
+        File destination) throws Exception
     {
         URL website = new URL(urlString);
         ReadableByteChannel rbc;
         rbc = Channels.newChannel(website.openStream());
         FileOutputStream fos = new FileOutputStream(destination);
-        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        fos.getChannel()
+            .transferFrom(rbc,
+                0,
+                Long.MAX_VALUE);
         fos.close();
         rbc.close();
     }
